@@ -16,7 +16,7 @@ test_labels = np.array(test_labels['labels'])
 
 ### Image processing
 def transforms(examples):
-    examples['img'] = [image.convert("RGB").resize((64, 64)) for image in examples['image']]
+    examples['img'] = [image.convert("RGB").resize((28, 28)) for image in examples['image']]
     return examples
 
 train_images = train_images.map(transforms, remove_columns = ['image'], batched = True)
@@ -25,12 +25,9 @@ test_images = test_images.map(transforms, remove_columns = ['image'], batched = 
 train_tensor = []
 test_tensor = []
 
-
-print("Train Tensor")
 for index in range(len(train_images)):
     train_tensor.append(np.array(train_images[index]['img']))
 
-print("Test Tensor")
 for index in range(len(test_images)):
     test_tensor.append(np.array(test_images[index]['img']))
 
@@ -45,8 +42,9 @@ test_tensor = test_tensor / 255
 class_names = ['Cat', 'Dog']
 
 ### CNN
+"""
 model = tf.keras.Sequential()
-model.add(tf.keras.layers.Conv2D(128, (3, 3), activation = 'relu', input_shape = (100, 100, 3)))
+model.add(tf.keras.layers.Conv2D(128, (3, 3), activation = 'relu', input_shape = (28, 28, 3)))
 model.add(tf.keras.layers.MaxPooling2D((2, 2)))
 model.add(tf.keras.layers.Conv2D(64, (3, 3), activation = 'relu'))
 model.add(tf.keras.layers.MaxPooling2D((2, 2)))
@@ -58,7 +56,10 @@ model.add(tf.keras.layers.Dense(32, activation = 'relu'))
 model.add(tf.keras.layers.Dense(2, activation = 'softmax'))
 
 model.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
-model.fit(train_tensor, train_labels, epochs = 10)
+model.fit(train_tensor, train_labels, epochs = 15)
 
-loss, accuracy = model.evaluate(test_images, test_labels)
+model.save("catvsdog.model")
+
+loss, accuracy = model.evaluate(test_tensor, test_labels)
 print(f'Accuracy: {accuracy * 100}\nLoss: {loss}')
+"""
