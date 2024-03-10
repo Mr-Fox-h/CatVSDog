@@ -14,13 +14,7 @@ The model is trained on the Hugging Face dataset, which provides a diverse colle
 
 ## Usage
 
-Researchers, developers, and animal lovers alike can utilize this AI detection model for tasks such as image classification, object recognition, and pet identification. The model's ability to distinguish between cats and dogs can be applied in various scenarios where such classification is required.
-Repository Contents
-
-- model.py: Contains the code for training and evaluating the cat vs dog detection model.
-- pretrained_model.pt: Pretrained model weights for immediate use.
-- requirements.txt: Lists the dependencies required to run the code and utilize the model.
-- README.md: Provides an overview of the project, instructions for usage, and acknowledgements.
+Researchers, developers, and animal lovers alike can utilize this AI detection model for tasks such as image classification, object recognition, and pet identification
 
 ## Acknowledgements
 
